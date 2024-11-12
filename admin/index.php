@@ -41,7 +41,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/rootremedy/user/index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-seedling"></i>
+                    <i class="fas fa-seedling"></i>
 
                 </div>
                 <div class="sidebar-brand-text mx-3">Root Remedy </div>
@@ -185,19 +185,11 @@ if (!isset($_SESSION['admin_logged_in'])) {
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                                <img class="img-profile rounded-circle" src="img/logo2.jfif">
+                                <img class="img-profile rounded-circle" src="img/logo2.jpeg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
                                 <a class="dropdown-item" href="#" id="log">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
@@ -213,10 +205,27 @@ if (!isset($_SESSION['admin_logged_in'])) {
                         <script>
                             function confirmLogout() {
                                 if (confirm("Are you sure you want to logout?")) {
-                                    window.location.href = "logout.php";
+                                    // Log the logout activity before redirecting
+                                    fetch('log_logout_activity.php', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/x-www-form-urlencoded'
+                                        },
+                                        body: 'activity=Admin logged out'
+                                    })
+                                        .then(response => response.text())
+                                        .then(data => {
+                                            // After logging the activity, redirect to logout.php
+                                            window.location.href = "logout.php"; // Redirect to logout page
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                            alert('Error logging out.');
+                                        });
                                 }
                             }
                         </script>
+
                     </ul>
                 </nav>
                 <!-- End of Topbar -->
@@ -225,7 +234,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a id="report" href="report.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <a id="report" href="report.php"
+                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                             <i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 
                     </div>
@@ -362,7 +372,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
                                 fetchData('fetchHerbal.php', 'herbalCount');
                                 fetchData('fetchConsultations.php', 'consultationsCount');
                                 fetchData('fetchReslovedConsultations.php', 'ResolvedconsultationsCount');
-                                
+
                             });
 
                             function fetchData(url, elementId) {
@@ -417,7 +427,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
+                                        <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Resolved Consultations
                                             </div>

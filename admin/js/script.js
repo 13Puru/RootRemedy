@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     pri: "privacy.html",
     use: "user_manual.html",
     cpass: "changePass.php",
-    log: "activity_log.php"
+    log: "activity_log.php"  // Activity log URL
   };
 
   // Attach click event to navigation links
@@ -20,13 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (linkElement) {
       linkElement.addEventListener("click", function (e) {
         e.preventDefault();
-        console.log(`Navigating to: ${navLinks[linkId]}`);
         loadContent(navLinks[linkId]);
       });
     }
   });
 
-  // Function to load content dynamically
+  // Function to load content dynamically into containerArea
   function loadContent(url) {
     console.log(`Loading content from URL: ${url}`);
     var xhr = new XMLHttpRequest();
@@ -36,10 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Content loaded successfully.");
         document.getElementById("containerArea").innerHTML = xhr.responseText;
 
-        // Attach handlers after content is loaded
-        attachFormSubmitHandler(url);  // Attach form handler if form is found
-        attachDeleteOptionHandler();   // Attach delete option handler
-        attachDeleteButtonHandlers();  // Attach delete button handler
+        // Re-attach form submission and delete handlers after loading new content
+        attachFormSubmitHandler(url);
+        attachDeleteOptionHandler();
+        attachDeleteButtonHandlers();
       } else {
         console.error("Error loading content:", xhr.statusText);
       }
@@ -73,21 +72,19 @@ document.addEventListener("DOMContentLoaded", function () {
   function attachFormSubmitHandler(actionUrl) {
     var form = document.querySelector("#containerArea form");
     if (form) {
-      console.log(`Form found in the loaded content. Attaching submit handler for form action: ${actionUrl}`);
+      console.log(`Form found. Attaching submit handler for action: ${actionUrl}`);
       form.addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent the default form submission
-        console.log(`Submitting form to ${actionUrl} via AJAX.`);
+        e.preventDefault();
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", actionUrl, true);
         xhr.onload = function () {
-          console.log("AJAX response received:", xhr.responseText);
           if (xhr.status === 200) {
             console.log("Form submitted successfully.");
             document.getElementById("containerArea").innerHTML = xhr.responseText;
-            attachFormSubmitHandler(actionUrl);  // Re-attach form handler
-            attachDeleteOptionHandler();         // Re-attach delete option handler
-            attachDeleteButtonHandlers();        // Re-attach delete button handler
+            attachFormSubmitHandler(actionUrl);
+            attachDeleteOptionHandler();
+            attachDeleteButtonHandlers();
           } else {
             console.error("Error submitting form:", xhr.statusText);
           }
@@ -108,20 +105,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const deleteOption = document.getElementById("deleteOption");
     if (deleteOption) {
       deleteOption.addEventListener("change", function (e) {
-        e.preventDefault(); // Prevent default action
-        console.log(`Selected delete option: ${deleteOption.value}`);
-        loadDeleteContent(deleteOption.value);  // Load delete content dynamically
+        e.preventDefault();
+        loadDeleteContent(deleteOption.value);
       });
     }
   }
 
   // Load respective delete content (plants, diseases, medicines)
   function loadDeleteContent(option) {
-    console.log(`Loading delete content for: ${option}`);
     var xhr = new XMLHttpRequest();
     var url = "";
 
-    // Select URL based on the delete option
     switch (option) {
       case "plants":
         url = "fetchDeletePlants.php";
@@ -140,9 +134,8 @@ document.addEventListener("DOMContentLoaded", function () {
     xhr.open("GET", url, true);
     xhr.onload = function () {
       if (xhr.status === 200) {
-        console.log("Delete content loaded successfully.");
         document.getElementById("containerArea").innerHTML = xhr.responseText;
-        attachDeleteButtonHandlers();  // Attach delete button handlers after loading new content
+        attachDeleteButtonHandlers();
       } else {
         console.error("Error loading delete content:", xhr.statusText);
       }
@@ -158,14 +151,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const deleteButtons = document.querySelectorAll(".delete-btn");
     deleteButtons.forEach((button) => {
       button.addEventListener("click", function (e) {
-        e.preventDefault();  // Prevent the default action
+        e.preventDefault();
         const id = button.getAttribute("data-id");
         const type = button.getAttribute("data-type");
-        const row = button.closest("tr");  // Get the closest row for deletion
+        const row = button.closest("tr");
 
-        console.log(`Delete button clicked for ${type} with ID: ${id}`);
         if (confirm(`Are you sure you want to delete this ${type}?`)) {
-          deleteItem(id, type, row);  // Pass the row to delete function
+          deleteItem(id, type, row);
         }
       });
     });
@@ -173,7 +165,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Separate delete action with AJAX
   function deleteItem(id, type, row) {
-    console.log(`Deleting ${type} with ID: ${id}`);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "deleteItem.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -181,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (xhr.status === 200) {
         alert(xhr.responseText);
         if (row) {
-          row.remove();  // Remove the row from the table immediately
+          row.remove();
         }
       } else {
         console.error("Error deleting item:", xhr.statusText);
@@ -210,14 +201,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to perform the search
   function performSearch(query) {
-    console.log(`Searching for: ${query}`);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "search.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function () {
       if (xhr.status === 200) {
-        console.log("Search results received:", xhr.responseText);
-        document.getElementById("containerArea").innerHTML = xhr.responseText;  // Update the container area with search results
+        document.getElementById("containerArea").innerHTML = xhr.responseText;
       } else {
         console.error("Error during search:", xhr.statusText);
       }

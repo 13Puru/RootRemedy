@@ -1,7 +1,6 @@
 <?php
 // Start session
 session_start();
-
 // Database connection
 include 'db_config.php';
 
@@ -23,20 +22,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If the user exists
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
+        
         // Verify password
         if (password_verify($password, $row['password'])) {
-            // Set session variables and redirect to dashboard
-            $_SESSION['admin_logged_in'] = $email;
-            // Assuming admin login was successful and session variables are set
-$admin_username = $_SESSION['admin_username'];
-$activity = "Logged in";
-$logQuery = "INSERT INTO admin_activity_log (admin_username, activity) VALUES (?, ?)";
-$logStmt = $conn->prepare($logQuery);
-$logStmt->bind_param("ss", $admin_username, $activity);
-$logStmt->execute();
-$logStmt->close();
+            // Set session variables
+            $_SESSION['admin_logged_in'] = true;
+            $_SESSION['admin_username'] = $email; // Store the username in session for later use
 
-            header("Location: index.php"); // Redirect to dashboard page
+            // Log the admin activity
+            $activity = "Logged in";
+            $logQuery = "INSERT INTO admin_activity_log (admin_username, activity) VALUES (?, ?)";
+            $logStmt = $conn->prepare($logQuery);
+            $logStmt->bind_param("ss", $email, $activity); // Use $email here for admin_username
+            $logStmt->execute();
+            $logStmt->close();
+
+            // Redirect to dashboard
+            header("Location: index.php"); 
             exit();
         } else {
             $error = "Invalid email or password.";

@@ -19,40 +19,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($newPassword !== $confirmPassword) {
         echo "New password and confirm password do not match.";
     } else {
+        // Ensure the username is available in the session
+        if (!isset($_SESSION['admin_username'])) {
+            echo "Session error: Username not found.";
+            exit();
+        }
+
+        $adminUsername = $_SESSION['admin_username'];
+
         // Fetch current password hash from the database
-        $adminUsername = $_SESSION['admin_username']; // Assuming username is stored in session
         $query = "SELECT password FROM admin WHERE username = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $adminUsername);
         $stmt->execute();
-        $stmt->bind_result($storedPasswordHash);
-        $stmt->fetch();
-        $stmt->close();
+        $stmt->store_result(); // Store the result to free the connection for the next query
 
-        // Verify current password
-        if (!password_verify($currentPassword, $storedPasswordHash)) {
-            echo "Current password is incorrect.";
-        } else {
-            // Hash the new password
-            $newPasswordHash = password_hash($newPassword, PASSWORD_BCRYPT);
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($storedPasswordHash);
+            $stmt->fetch();
+            $stmt->close(); // Close the statement before running the next query
 
-            // Update the password in the database
-            $updateQuery = "UPDATE admin SET password = ? WHERE username = ?";
-            $updateStmt = $conn->prepare($updateQuery);
-            $updateStmt->bind_param("ss", $newPasswordHash, $adminUsername);
-
-            if ($updateStmt->execute()) {
-                echo "Password changed successfully.";
+            // Verify current password
+            if (!password_verify($currentPassword, $storedPasswordHash)) {
+                echo "Current password is incorrect.";
             } else {
-                echo "Error updating password.";
+                // Hash the new password
+                $newPasswordHash = password_hash($newPassword, PASSWORD_BCRYPT);
+
+                // Update the password in the database
+                $updateQuery = "UPDATE admin SET password = ? WHERE username = ?";
+                $updateStmt = $conn->prepare($updateQuery);
+                $updateStmt->bind_param("ss", $newPasswordHash, $adminUsername);
+
+                if ($updateStmt->execute()) {
+                    echo "Password changed successfully.";
+                } else {
+                    echo "Error updating password.";
+                }
+                $updateStmt->close();
             }
-            $updateStmt->close();
+        } else {
+            echo "Error: Unable to retrieve stored password.";
+            $stmt->close();
         }
     }
 }
 
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

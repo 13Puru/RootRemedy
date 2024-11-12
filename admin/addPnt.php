@@ -63,19 +63,15 @@ if (!isset($_SESSION['admin_logged_in'])) {
                 $plant_properties = $conn->real_escape_string($_POST['plant_properties'] ?? '');
 
                 // Handle image upload
-                $image1 = $image2 = '';
+                $image1 ='';
 
                 if (isset($_FILES['plant_image1']) && $_FILES['plant_image1']['error'] == 0) {
                     $image1 = addslashes(file_get_contents($_FILES['plant_image1']['tmp_name']));
                 }
-                
-                if (isset($_FILES['plant_image2']) && $_FILES['plant_image2']['error'] == 0) {
-                    $image2 = addslashes(file_get_contents($_FILES['plant_image2']['tmp_name']));
-                }
 
                 // SQL query to insert data into the database
-                $sql = "INSERT INTO plant (plant_name, plant_properties, image1, image2) 
-                        VALUES ('$plant_name', '$plant_properties', '$image1', '$image2')";
+                $sql = "INSERT INTO plant (plant_name, plant_properties, image1) 
+                        VALUES ('$plant_name', '$plant_properties', '$image1')";
 
                 if ($conn->query($sql) === TRUE) {
                     echo "<div class='alert alert-success text-center'>New plant details added successfully!</div>";
@@ -97,12 +93,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
                     <textarea class="form-control" id="plantProperties" name="plant_properties" rows="3" placeholder="Enter plant properties" required></textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="plantImage1" class="form-label">Insert Plant Image 1</label>
+                    <label for="plantImage1" class="form-label">Insert Plant Image</label>
                     <input class="form-control" type="file" id="plantImage1" name="plant_image1" required>
-                </div>
-                <div class="mb-3">
-                    <label for="plantImage2" class="form-label">Insert Plant Image 2</label>
-                    <input class="form-control" type="file" id="plantImage2" name="plant_image2" required>
                 </div>
                 <button type="submit" class="btn btn-success w-100">Submit</button>
             </form>
