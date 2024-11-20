@@ -16,10 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sql) === TRUE) {
         // Redirect to index.php with success status for the enquiry
-        header("Location: index.php?status=success");
+        header("Location: index.php?status=userconsult_success");
     } else {
         // Redirect to index.php with error status for the enquiry
-        header("Location: index.php?status=error");
+        header("Location: index.php?status=userconsult_error");
     }
 }
 

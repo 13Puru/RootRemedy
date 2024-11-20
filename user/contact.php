@@ -1,35 +1,10 @@
+<?php include 'getfeatured.php'; ?>
 <?php
-include 'getfeatured.php';
-include 'db_config.php';
-$category = isset($_GET['category']) ? $_GET['category'] : '';
-$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
-
-$data = [];
-if ($category) {
-    if ($category == "plants") {
-        $sql = "SELECT plant_name, plant_properties, image1 FROM plant WHERE plant_name LIKE ? OR plant_properties LIKE ?";
-    } elseif ($category == "medicines") {
-        $sql = "SELECT medicine_name, preparation_method, how_to_take FROM medicine WHERE medicine_name LIKE ? OR preparation_method LIKE ?";
-    } elseif ($category == "diseases") {
-        $sql = "SELECT disease_name, properties, symptoms FROM disease WHERE disease_name LIKE ? OR properties LIKE ?";
-    }
-
-    $stmt = $conn->prepare($sql);
-    $searchParam = '%' . $searchTerm . '%';
-    $stmt->bind_param("ss", $searchParam, $searchParam);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result && $result->num_rows > 0) {
-        $data = $result->fetch_all(MYSQLI_ASSOC);
-    }
-}
-
 $status = '';
 if (isset($_GET['status'])) {
     $status = $_GET['status'];
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -38,7 +13,7 @@ if (isset($_GET['status'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="shortcut icon" href="assets/favicon.png" type="png" />
-    <title>RootRemedy - Search</title>
+    <title>RootRemedy - Contact</title>
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -62,23 +37,8 @@ if (isset($_GET['status'])) {
 
         <!-- Centered Text -->
         <div class="centered-text">
-            <h1>Search for your desired topic</h1>
-            <div class="filter-search-bar">
-                <form id="filterForm" method="GET">
-                    <input type="text" placeholder="Search for plants, medicines and diseases..." name="search"
-                        class="filter-search-input" value="<?= htmlspecialchars($searchTerm) ?>" />
-                    <!-- Filter Dropdowns and Apply Filter Button -->
-                    <div class="filter-controls">
-                        <select class="filter-dropdown" name="category" id="category">
-                            <option value="">Select Category</option>
-                            <option value="plants" <?= $category == 'plants' ? 'selected' : '' ?>>Plants</option>
-                            <option value="medicines" <?= $category == 'medicines' ? 'selected' : '' ?>>Medicines</option>
-                            <option value="diseases" <?= $category == 'diseases' ? 'selected' : '' ?>>Diseases</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="filter-search-button">Search</button>
-                </form>
-            </div>
+            <h1>Find our contact details below</h1>
+
         </div>
 
         <!-- Navbar -->
@@ -114,38 +74,6 @@ if (isset($_GET['status'])) {
                 </ul>
             </div>
         </nav>
-    </div>
-
-    <div class="container-fluid mx-0 filter-results">
-        <?php if (!empty($data)): ?>
-            <h3 class="text-center mb-4">Results for <?= ucfirst($category) ?>: <?= htmlspecialchars($searchTerm) ?></h3>
-            <div class="row gy-3 g-md-3">
-                <?php foreach ($data as $item): ?>
-                    <div class="col-md-4">
-                        <div class="card h-100">
-                            <?php if ($category == "plants" && $item['image1']): ?>
-                                <img src="data:image/jpeg;base64,<?= base64_encode($item['image1']) ?>" class="card-img-top"
-                                    alt="<?= htmlspecialchars($item['plant_name']) ?>">
-                            <?php endif; ?>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <?= htmlspecialchars($item['plant_name'] ?? $item['medicine_name'] ?? $item['disease_name']) ?>
-                                </h5>
-                                <p class="card-text">
-                                    <?= nl2br(htmlspecialchars($item['plant_properties'] ?? $item['preparation_method'] ?? $item['properties'])) ?>
-                                </p>
-                                <?php if (isset($item['how_to_take']) || isset($item['symptoms'])): ?>
-                                    <p class="card-text"><strong>Details:</strong>
-                                        <?= htmlspecialchars($item['how_to_take'] ?? $item['symptoms']) ?></p>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php else: ?>
-            <p class="text-center">No results found. Please try a different filter or search term.</p>
-        <?php endif; ?>
     </div>
 
 

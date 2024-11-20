@@ -13,10 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Execute the statement
     if ($stmt->execute()) {
         // Redirect to index.php with success status for the subscription
-        header("Location: index.php?newsletter_status=subscribed");
+        header("Location: index.php?status=subscribe_success");
     } else {
         // Redirect to index.php with error status for the subscription
-        header("Location: index.php?newsletter_status=error");
+        header("Location: index.php?status=subscribe_error");
     }
 
     // Close the statement
