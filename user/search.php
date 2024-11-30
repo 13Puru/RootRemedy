@@ -245,6 +245,7 @@ if (isset($_GET['query']) && !empty(trim($_GET['query']))) {
                             <a class="active" href="index.php"> Home </a>
                             <a class="" href="about.php"> Filtered Search </a>
                             <a class="" href="index.php#enquire"> Enquire </a>
+                            <a class="" href="map.php" target="blank">Real Location</a>
                             <a class="" href="about.php"> About Us </a>
                             <a class="" href="contact.html"> Get In Touch </a>
                         </div>

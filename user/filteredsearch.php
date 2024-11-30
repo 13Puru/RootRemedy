@@ -103,6 +103,9 @@ if (isset($_GET['status'])) {
                         <a class="nav-link" href="filteredsearch.php"> Filtered Search</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="map.php" target="blank"> Real location</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="index.php#enquire">Enquire</a>
                     </li>
                     <li class="nav-item">
