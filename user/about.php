@@ -13,6 +13,7 @@ if (isset($_GET['status'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="shortcut icon" href="assets/favicon.png" type="png" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>RootRemedy - About</title>
 
     <!-- bootstrap core css -->
@@ -28,6 +29,61 @@ if (isset($_GET['status'])) {
     <link href="css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" />
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        @keyframes slideInLeft {
+        from {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 1s, transform 1s;
+    }
+
+    .animate-slide-in-left {
+        animation: slideInLeft 2s ease-out;
+    }
+
+    .animate-slide-in-right {
+        animation: slideInRight 2s ease-out;
+    }
+    p{
+        font-size: 18px;
+    }
+    .para p{
+        font-size: 30px;
+    }
+    </style>
 </head>
 
 <body>
@@ -37,9 +93,20 @@ if (isset($_GET['status'])) {
 
         <!-- Centered Text -->
         <div class="centered-text">
-            <h1>About us</h1>
+    <h1>About Us</h1>
+    <p>
+        Welcome to <strong>Root Remedy</strong>, your gateway to the wealth of traditional medicinal knowledge from Northeast India. Root Remedy is dedicated to preserving and promoting the incredible benefits of indigenous plants and herbs that have been used for centuries to heal and nurture.  
+    </p>
+    <p>
+        Our platform is more than just a database—it's a bridge between tradition and technology. Whether you're exploring medicinal plants, searching for natural remedies, or seeking expert consultation, Root Remedy is here to guide you.  
+    </p>
+    <p>
+        We are committed to empowering communities with sustainable healthcare solutions by bringing the wisdom of nature to the digital forefront. Together, let’s rediscover the power of nature's pharmacy and build a healthier future.  
+    </p>
+    <p><strong>Discover. Learn. Heal.</strong></p>
+    <div class="para"><p><strong>Scroll to meet our strong team with skillfull members</strong></p></div>
+</div>
 
-        </div>
 
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg custom_nav-container">
@@ -76,8 +143,88 @@ if (isset($_GET['status'])) {
         </nav>
     </div>
     <div class="about-section">
-        <h2>About Us</h2>
-        <p>Add relevant about section details</p>
+    <div class="container mx-auto" id="team-section">
+    <h2 class="text-3xl font-bold text-center text-white-900 mb-8 drop-shadow-lg">
+        Our Team
+    </h2>
+    <!-- Guide Card -->
+    <div class="w-full md:w-full lg:w-full flex justify-center mt-6 mb-6 animate-on-scroll animate-slide-in-left">
+        <div class="w-full max-w-3xl bg-teal-100 rounded-2xl shadow-lg card-hover overflow-hidden p-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-40 h-40 md:flex-shrink-0 mx-auto md:mx-0 mt-4 md:mt-0 mb-4 md:mb-0 rounded-full overflow-hidden border-4 border-white shadow-md">
+                    <img src="/rootremedy/user/assets/abhijit.jpg" alt="Project Guide" class="w-full h-full object-cover">
+                </div>
+                <div class="text-center md:text-left px-4">
+                    <h3 class="text-xl font-bold text-teal-900 mb-2">Dr. Abhijit Bora</h3>
+                    <p class="text-teal-700 mb-4 italic">Academic Mentor & Advisor</p>
+                    <div class="bg-white/50 rounded-lg p-3 mx-2 md:mx-0">
+                        <h4 class="text-md font-semibold text-teal-900 mb-2">Key Contributions</h4>
+                        <ul class="space-y-1 text-teal-800 text-sm">
+                            <li>Project Conceptualization</li>
+                            <li>Technical Guidance</li>
+                            <li>Research Supervision</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-wrap justify-center gap-6">
+        <!-- Developer Cards -->
+        <div class="w-64 bg-green-100 rounded-2xl shadow-lg card-hover overflow-hidden animate-on-scroll animate-slide-in-right">
+            <div class="w-32 h-32 mx-auto mt-4 mb-2 rounded-full overflow-hidden border-4 border-white shadow-md">
+                <img src="/rootremedy/user/assets/purab.jpeg" alt="Purab Das" class="w-full h-full object-cover">
+            </div>
+            <div class="text-center px-4 pb-4">
+                <h3 class="text-lg font-bold text-green-900 mb-2">Purab Das</h3>
+                <p class="text-green-700 mb-3 italic">Backend/Frontend Developer</p>
+                <div class="bg-white/50 rounded-lg p-3">
+                    <h4 class="text-md font-semibold text-green-900 mb-2">Key Contributions</h4>
+                    <ul class="space-y-1 text-green-800 text-sm">
+                        <li>Major Implementation</li>
+                        <li>Search Algorithm</li>
+                        <li>Database Design</li>
+                        <li>Web Page Structure</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="w-64 bg-emerald-100 rounded-2xl shadow-lg card-hover overflow-hidden animate-on-scroll animate-slide-in-right">
+            <div class="w-32 h-32 mx-auto mt-4 mb-2 rounded-full overflow-hidden border-4 border-white shadow-md">
+                <img src="/rootremedy/user/assets/srijani.jpg" alt="Srijani Deb" class="w-full h-full object-cover">
+            </div>
+            <div class="text-center px-4 pb-4">
+                <h3 class="text-lg font-bold text-green-900 mb-2">Srijani Deb</h3>
+                <p class="text-green-700 mb-3 italic">Frontend Designer</p>
+                <div class="bg-white/50 rounded-lg p-3">
+                    <h4 class="text-md font-semibold text-green-900 mb-2">Key Contributions</h4>
+                    <ul class="space-y-1 text-green-800 text-sm">
+                        <li>Comprehensive Research</li>
+                        <li>Data Collection</li>
+                        <li>Initial Design Concepts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="w-64 bg-lime-100 rounded-2xl shadow-lg card-hover overflow-hidden animate-on-scroll animate-slide-in-right">
+            <div class="w-32 h-32 mx-auto mt-4 mb-2 rounded-full overflow-hidden border-4 border-white shadow-md">
+                <img src="/rootremedy/user/assets/abhishek.jpeg" alt="Abhishek Shekhar" class="w-full h-full object-cover">
+            </div>
+            <div class="text-center px-4 pb-4">
+                <h3 class="text-lg font-bold text-green-900 mb-2">Abhishek Shekhar</h3>
+                <p class="text-green-700 mb-3 italic">Frontend Designer</p>
+                <div class="bg-white/50 rounded-lg p-3">
+                    <h4 class="text-md font-semibold text-green-900 mb-2">Key Contributions</h4>
+                    <ul class="space-y-1 text-green-800 text-sm">
+                        <li>Enhanced User Interface</li>
+                        <li>Report Structuring</li>
+                        <li>UI/UX Optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     </div>
 
     <footer class="footer_section">
@@ -157,7 +304,7 @@ if (isset($_GET['status'])) {
                 <p>
                     &copy; <span id="displayYear"></span> All Rights Reserved By Root
                     Remedy
-                </p>
+          </p>
             </div>
         </div>
     </footer>
@@ -171,6 +318,27 @@ if (isset($_GET['status'])) {
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <!-- custom js -->
     <script type="text/javascript" src="js/custom.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animate-slide-in-left", "animate-slide-in-right");
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            },
+            { threshold: 0.2 } // Trigger when 20% of the section is visible
+        );
+
+        document.querySelectorAll(".animate-on-scroll").forEach((element) => {
+            observer.observe(element);
+        });
+    });
+</script>
 
 </body>
 

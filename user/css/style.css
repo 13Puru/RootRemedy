@@ -106,7 +106,10 @@ a:focus {
 
 .nav_and_bg_search {
   background-image: url(../assets/featured_bg2.jpg);
-  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+
   overflow: hidden;
 }
 
@@ -369,7 +372,7 @@ a:focus {
 
 .featured_section {
   background-image: url(../assets/featured_bg2.jpg);
-  object-fit: cover;
+  background-repeat: no-repeat;
 }
 
 .featured_section .box .img-box {

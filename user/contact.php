@@ -37,9 +37,12 @@ if (isset($_GET['status'])) {
 
         <!-- Centered Text -->
         <div class="centered-text">
-            <h1>Find our contact details below</h1>
+    <h1>We’re Here to Help—Get in Touch with Us</h1>
+    <p>
+        Have questions or need assistance? Reach out to us using the contact details below, and we'll be happy to assist you.  
+    </p>
+</div>
 
-        </div>
 
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg custom_nav-container">

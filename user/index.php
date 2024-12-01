@@ -80,6 +80,9 @@ include 'db_config.php'
           <li class="nav-item">
             <a class="nav-link" href="contact.php">Get in touch</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/rootremedy/admin/login.php">Admin Login</a>
+          </li>
         </ul>
       </div>
     </nav>
