@@ -128,7 +128,7 @@
     </div>
 
     <script>
-        // Previous JavaScript remains unchanged
+       
         const map = L.map("map").setView([26.2006, 92.9376], 6);
 
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {

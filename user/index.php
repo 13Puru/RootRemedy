@@ -27,9 +27,46 @@ include 'db_config.php'
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+     .chatbot-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            z-index: 1000; /* Ensure it stays above all other elements */
+            transition: transform 0.3s ease;
+        }
+
+        .chatbot-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-icon img {
+            width: 100px; /* Adjust image size */
+            height: 60px;
+            object-fit: cover;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+  </style>
 </head>
 
 <body>
+  <!-- Chatbot Icon -->
+  <div class="chatbot-icon" onclick="startChatbot()">
+    <img src="logo1.jfif" alt="Chatbot">
+</div>
+  
   <div class="nav_and_bg">
     <!-- Background Video -->
     <video autoplay loop muted class="bg-video">
@@ -309,6 +346,27 @@ include 'db_config.php'
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <!-- custom js -->
   <script type="text/javascript" src="js/custom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+<script>
+  function startChatbot() {
+    fetch('http://127.0.0.1:5000/start-chatbot')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                alert("Chatbot started successfully!");
+            } else {
+                alert("Error: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Could not start chatbot. Check console for details.");
+        });
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

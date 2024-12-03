@@ -372,8 +372,8 @@ a:focus {
 
 .featured_section {
   background-image: url(../assets/featured_bg2.jpg);
-  background-repeat: no-repeat;
-}
+background-position: relative;
+background-repeat: repeat;}
 
 .featured_section .box .img-box {
   width: 100%;

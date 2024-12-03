@@ -243,6 +243,8 @@ if (isset($_GET['status'])) {
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <!-- custom js -->
     <script type="text/javascript" src="js/custom.js"></script>
+    <script src="/user/js/script.js"></script>
+
 
 </body>
 
