@@ -193,29 +193,39 @@ body {
             <h3 class="mb-0">Add Disease Details</h3>
         </div>
         <div class="card-body">
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                include 'db_config.php';
+        <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include 'db_config.php';
 
-                // Get form data
-                $disease_name = $_POST['disease_name'];
-                $disease_properties = $_POST['disease_properties'];
-                $disease_symptoms = $_POST['disease_symptoms'];
+    // Get form data
+    $disease_name = $_POST['disease_name'];
+    $disease_properties = $_POST['disease_properties'];
+    $disease_symptoms = $_POST['disease_symptoms'];
 
-                // SQL query to insert data into the database
-                $sql = "INSERT INTO disease (disease_name, properties, symptoms) 
-                        VALUES ('$disease_name', '$disease_properties', '$disease_symptoms')";
+    // Prepare the SQL query
+    $stmt = $conn->prepare("INSERT INTO disease (disease_name, properties, symptoms) VALUES (?, ?, ?)");
+    if ($stmt) {
+        // Bind parameters to the query
+        $stmt->bind_param("sss", $disease_name, $disease_properties, $disease_symptoms);
 
-                if ($conn->query($sql) === TRUE) {
-                    echo "<div class='alert alert-success text-center'>New disease details added successfully!</div>";
-                } else {
-                    echo "<div class='alert alert-danger text-center'>Error: " . $sql . "<br>" . $conn->error . "</div>";
-                }
+        // Execute the statement
+        if ($stmt->execute()) {
+            echo "<div class='alert alert-success text-center'>New disease details added successfully!</div>";
+        } else {
+            echo "<div class='alert alert-danger text-center'>Error: " . $stmt->error . "</div>";
+        }
 
-                // Close the database connection
-                $conn->close();
-            }
-            ?>
+        // Close the statement
+        $stmt->close();
+    } else {
+        echo "<div class='alert alert-danger text-center'>Error: Unable to prepare the SQL statement.</div>";
+    }
+
+    // Close the database connection
+    $conn->close();
+}
+?>
+
             <form action="" method="POST">
                 <div class="mb-3">
                     <label for="diseaseName" class="form-label">Name of Disease</label>
