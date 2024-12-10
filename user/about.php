@@ -181,10 +181,12 @@ if (isset($_GET['status'])) {
                 <div class="bg-white/50 rounded-lg p-3">
                     <h4 class="text-md font-semibold text-green-900 mb-2">Key Contributions</h4>
                     <ul class="space-y-1 text-green-800 text-sm">
-                        <li>Major Implementation</li>
-                        <li>Search Algorithm</li>
+                        <li>Major Implementations</li>
+                        <li>Medicine Reco. Sys</li>
+                        <li>Search functionality</li>
                         <li>Database Design</li>
-                        <li>Web Page Structure</li>
+                        <li>Chatbot Integration</li>
+                        <li>Admin Panel Implementations</li>
                     </ul>
                 </div>
             </div>
@@ -200,7 +202,8 @@ if (isset($_GET['status'])) {
                     <h4 class="text-md font-semibold text-green-900 mb-2">Key Contributions</h4>
                     <ul class="space-y-1 text-green-800 text-sm">
                         <li>Comprehensive Research</li>
-                        <li>Data Collection</li>
+                        <li>Data Collection and Insertion</li>
+                        <li>Report Structuring</li>
                         <li>Initial Design Concepts</li>
                     </ul>
                 </div>
@@ -218,7 +221,8 @@ if (isset($_GET['status'])) {
                     <ul class="space-y-1 text-green-800 text-sm">
                         <li>Enhanced User Interface</li>
                         <li>Report Structuring</li>
-                        <li>UI/UX Optimization</li>
+                        <li>Initail Design Concepts</li>
+                        <li>UI Optimization</li>
                     </ul>
                 </div>
             </div>

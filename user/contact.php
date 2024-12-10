@@ -13,7 +13,7 @@ if (isset($_GET['status'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="shortcut icon" href="assets/favicon.png" type="png" />
-    <title>RootRemedy - Contact</title>
+    <title>RootRemedy - References</title>
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -37,10 +37,21 @@ if (isset($_GET['status'])) {
 
         <!-- Centered Text -->
         <div class="centered-text">
-    <h1>We’re Here to Help—Get in Touch with Us</h1>
-    <p>
-        Have questions or need assistance? Reach out to us using the contact details below, and we'll be happy to assist you.  
-    </p>
+    <h1 style="margin-top: 10%;">References</h1>
+    <p style="font-size: 20px;">Disclaimer: The information presented on this website is collected from various reputable sources, including but not limited to: 
+        <marquee style="background: green;">
+    plantayurveda.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ayurtimes.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    flowerindia.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    vardhanayurveda.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    healthline.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ayurmedinfo.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</marquee>
+
+While we strive to provide accurate and up-to-date information, this content is intended for informational purposes only and should not be considered as medical advice. Please consult with a qualified healthcare professional before starting any new treatment or making any changes to your existing treatment plan.
+</p>
+<p style="font-size: 20px;">For more information, please visit: <ul style="background: grey; padding: 20px 40px; border-radius:20px;"> <li><a href="https://www.studocu.com/in/document/dibrugarh-university/bechelor-of-science-botany/medicinal-plants-of-assam/47705459">https://www.studocu.com/in/document/dibrugarh-university/bechelor-of-science-botany/medicinal-plants-of-assam/47705459</a></li> <li><a href="https://www.scribd.com/document/394131485/Medicinal-Plants-in-Assam">https://www.scribd.com/document/394131485/Medicinal-Plants-in-Assam</a></li> <li><a href="https://www.scholarsresearchlibrary.com/articles/ethnomedicinal-plants-used-for-the-treatment-of-common-diseasesby-the-people-of-lakhimpur-district-assam.pdf">https://www.scholarsresearchlibrary.com/articles/ethnomedicinal-plants-used-for-the-treatment-of-common-diseasesby-the-people-of-lakhimpur-district-assam.pdf</a></li> <li><a href="https://or.niscpr.res.in/index.php/IJNPR/article/download/4181/1604/14724">https://or.niscpr.res.in/index.php/IJNPR/article/download/4181/1604/14724</a></li> <li><a href="https://indiabiodiversity.org/content/documents/document-d2c9e0b3-f912-4c4e-82fd-bcd88e5454b7/645.pdf">https://indiabiodiversity.org/content/documents/document-d2c9e0b3-f912-4c4e-82fd-bcd88e5454b7/645.pdf</a></li> </ul> </p>
+
 </div>
 
 
@@ -74,9 +85,7 @@ if (isset($_GET['status'])) {
                     <li class="nav-item">
                         <a class="nav-link" href="about.php">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Get in touch</a>
-                    </li>
+                    
                 </ul>
             </div>
         </nav>

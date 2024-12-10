@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     pri: "privacy.html",
     use: "user_manual.html",
     cpass: "changePass.php",
-    log: "activity_log.php"  // Activity log URL
+    log: "activity_log.php"  
   };
 
   // Attach click event to navigation links
@@ -50,23 +50,23 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to generate report
-  function generateReport() {
-    console.log("Generating report...");
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "generateReport.php", true); // Adjust URL as needed for report generation
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        console.log("Report generated successfully.");
-        alert("Report generated! Check your downloads.");
-      } else {
-        console.error("Error generating report:", xhr.statusText);
-      }
-    };
-    xhr.onerror = function () {
-      console.error("Request failed while generating report");
-    };
-    xhr.send();
-  }
+  // function generateReport() {
+  //   console.log("Generating report...");
+  //   var xhr = new XMLHttpRequest();
+  //   xhr.open("GET", "generateReport.php", true); // Adjust URL as needed for report generation
+  //   xhr.onload = function () {
+  //     if (xhr.status === 200) {
+  //       console.log("Report generated successfully.");
+  //       alert("Report generated! Check your downloads.");
+  //     } else {
+  //       console.error("Error generating report:", xhr.statusText);
+  //     }
+  //   };
+  //   xhr.onerror = function () {
+  //     console.error("Request failed while generating report");
+  //   };
+  //   xhr.send();
+  // }
 
   // Handle form submissions using AJAX
   function attachFormSubmitHandler(actionUrl) {

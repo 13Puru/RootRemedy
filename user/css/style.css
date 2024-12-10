@@ -505,6 +505,8 @@ background-repeat: repeat;}
   padding: 30px;
   font-size: 18px;
   background-image: url(../assets/featured_bg2.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: white;
 }
 

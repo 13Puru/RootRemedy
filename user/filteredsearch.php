@@ -112,7 +112,7 @@ if (isset($_GET['status'])) {
                         <a class="nav-link" href="about.php">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Get in touch</a>
+                        <a class="nav-link" href="contact.php">References</a>
                     </li>
                 </ul>
             </div>

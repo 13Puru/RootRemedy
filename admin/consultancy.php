@@ -6,7 +6,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 // Include the database configuration file
-require_once 'db_config.php';
+
+include 'db_config.php';
 
 // Fetch consultancy requests from the database where the status is 'Pending'
 $sql = "SELECT user_id, name, email, phone_number, subject, message, status FROM user WHERE status = 'Pending'";
@@ -246,9 +247,9 @@ body {
             <table class="table table-striped table-hover table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th>User Name</th>
+                        <th>Name</th>
                         <th>Email</th>
-                        <th>Mobile Number</th>
+                        <th>Phone Number</th>
                         <th>Subject</th>
                         <th>Message</th>
                         <th>Status</th>
