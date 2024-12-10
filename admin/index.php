@@ -27,6 +27,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
 
 </head>
 
@@ -536,6 +538,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
     <script src="js/demo/chart-pie-demo.js"></script>
 
     <script src="js/script.js"></script>
+   
 
 </body>
 

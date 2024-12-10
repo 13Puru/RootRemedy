@@ -7,42 +7,34 @@ import os
 
 # Set Page Configuration
 st.set_page_config(
-        page_title="RootaBot: Botanical Wisdom",
-        page_icon="🌿",
-        layout="wide"
+    page_title="RootaBot: Botanical Wisdom",
+    page_icon="🌿",
+    layout="wide"
 )
+
 # Custom Styling Module
 class RootaBotStyles:
     @staticmethod
     def apply_custom_styling():
         st.markdown("""
         <style>
-        /* Custom Font and Color Palette */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
-        
-        /* Root Variables for Easy Theming */
         :root {
-            --primary-color: #2C8C99;       /* Teal */
-            --secondary-color: #5CDB95;     /* Mint Green */
-            --accent-color: #379683;        /* Dark Teal */
-            --background-color: #F4F9F9;    /* Soft Mint Background */
-            --text-color: #05386B;          /* Deep Blue */
+            --primary-color: #2C8C99;
+            --secondary-color: #5CDB95;
+            --accent-color: #379683;
+            --background-color: #F4F9F9;
+            --text-color: #05386B;
         }
-
-        /* Streamlit Base Overrides */
         .stApp {
             background-color: var(--background-color);
             font-family: 'Inter', sans-serif;
             color: var(--text-color);
         }
-
-        /* Sidebar Styling */
         .css-1aumxhk {
             background-color: rgba(92, 219, 149, 0.1);
             border-right: 2px solid var(--secondary-color);
         }
-
-        /* Chat Input Styling */
         .stTextInput > div > div > input {
             border: 2px solid var(--primary-color);
             border-radius: 10px;
@@ -50,28 +42,22 @@ class RootaBotStyles:
             font-size: 16px;
             transition: all 0.3s ease;
         }
-
         .stTextInput > div > div > input:focus {
             box-shadow: 0 0 10px rgba(44, 140, 153, 0.3);
             border-color: var(--accent-color);
         }
-
-        /* Chat Message Containers */
         .user-message {
             background-color: rgba(44, 140, 153, 0.1);
             border-radius: 10px;
             padding: 15px;
             margin-bottom: 10px;
         }
-
         .assistant-message {
             background-color: rgba(92, 219, 149, 0.1);
             border-radius: 10px;
             padding: 15px;
             margin-bottom: 10px;
         }
-
-        /* Buttons */
         .stButton > button {
             background-color: var(--primary-color);
             color: white;
@@ -80,18 +66,13 @@ class RootaBotStyles:
             padding: 10px 20px;
             transition: all 0.3s ease;
         }
-
         .stButton > button:hover {
             background-color: var(--accent-color);
             transform: scale(1.05);
         }
-
-        /* Spinner */
         .stSpinner > div > svg {
             color: var(--primary-color);
         }
-
-        /* Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -209,13 +190,11 @@ def main():
         
         st.header("🔗 Quick Resources")
         st.markdown("• [Northeast Council](https://www.necouncil.gov.in/)")
-        st.markdown("• [Botanical Research Resources](https://www.cabi.org/cabreviews)")
+        st.markdown("• [Botanical Research Resources](https://www.bioone.org/)")
         
-        # Additional Sidebar Features
         st.header("🌈 Explore More")
         if st.button("Reset Conversation"):
-            st.session_state.messages = []
-            st.experimental_rerun()
+            st.session_state.clear()
 
     # Initialize Chat History
     if "messages" not in st.session_state:
@@ -247,11 +226,6 @@ def main():
         response_placeholder.markdown(f'<div class="assistant-message">{full_response}</div>', unsafe_allow_html=True)
         st.session_state.messages.append({"role": "assistant", "content": full_response})
         
-        # Optional: Save Conversation
-        try:
-            ConversationManager.save_conversation(st.session_state.messages)
-        except Exception as e:
-            st.warning(f"Could not save conversation: {e}")
 
 if __name__ == "__main__":
     main()

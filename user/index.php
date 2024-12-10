@@ -31,7 +31,7 @@ include 'db_config.php'
   <style>
      .chatbot-icon {
             position: fixed;
-            bottom: 20px;
+            bottom: 50px;
             right: 20px;
             background-color: #007bff;
             color: white;
@@ -48,7 +48,7 @@ include 'db_config.php'
         }
 
         .chatbot-icon:hover {
-            transform: scale(1.1);
+            transform: scale(1.3);
         }
 
         .chatbot-icon img {
