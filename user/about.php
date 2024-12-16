@@ -144,9 +144,10 @@ if (isset($_GET['status'])) {
     </div>
     <div class="about-section">
     <div class="container mx-auto" id="team-section">
-    <h2 class="text-3xl font-bold text-center text-white-900 mb-8 drop-shadow-lg">
-        Our Team
-    </h2>
+    <h2 class="text-3xl font-bold text-center text-black mb-8 drop-shadow-lg">
+    Our Team
+</h2>
+
     <!-- Guide Card -->
     <div class="w-full md:w-full lg:w-full flex justify-center mt-6 mb-6 animate-on-scroll animate-slide-in-left">
         <div class="w-full max-w-3xl bg-teal-100 rounded-2xl shadow-lg card-hover overflow-hidden p-4">
